@@ -1,0 +1,423 @@
+.container-navbar {
+    background-color: var(--background-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
+}
+
+.container-navbar.scrolled {
+    background-color: rgba(249, 245, 240, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    gap: 2rem;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.menu-toggle:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.menu-toggle:active {
+    transform: scale(0.95);
+}
+
+.menu {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    justify-content: center;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--dark-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(199, 161, 122, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.menu-link:hover::before {
+    left: 100%;
+}
+
+.menu-link i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.menu-link:hover {
+    color: var(--primary-color);
+    background: rgba(199, 161, 122, 0.1);
+    transform: translateY(-2px);
+}
+
+.menu-link:hover i {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.menu-link-underline {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), #b8916a);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.menu-link:hover .menu-link-underline {
+    width: 80%;
+}
+
+.menu-link.active {
+    color: var(--primary-color);
+    background: rgba(199, 161, 122, 0.15);
+    font-weight: 700;
+}
+
+.menu-link.active .menu-link-underline {
+    width: 80%;
+}
+
+.menu-link.active i {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.menu-link:active {
+    transform: translateY(0);
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    background: white;
+    transition: all 0.3s ease;
+    overflow: visible;
+}
+
+.search-form.focused {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(199, 161, 122, 0.2);
+    transform: scale(1.02);
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.search-wrapper .search-results-badge {
+    position: absolute;
+    top: -8px;
+    right: 40px;
+    background: #f44336;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    min-width: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+    z-index: 10;
+}
+
+.search-input {
+    outline: none;
+    font-family: inherit;
+    border: none;
+    width: 25rem;
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: var(--dark-color);
+    transition: all 0.3s ease;
+}
+
+
+.search-input::placeholder {
+    color: #999;
+    transition: opacity 0.3s ease;
+}
+
+.search-form.focused .search-input::placeholder {
+    opacity: 0.5;
+}
+
+.search-clear {
+    position: absolute;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.search-clear:hover {
+    background: #f0f0f0;
+    color: var(--dark-color);
+    transform: rotate(90deg);
+}
+
+.btn-search {
+    border: none;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #b8916a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.btn-search:hover {
+    background: linear-gradient(135deg, #b8916a 0%, var(--primary-color) 100%);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(199, 161, 122, 0.4);
+}
+
+.btn-search:active {
+    transform: scale(0.95);
+}
+
+.btn-search i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-search:hover i {
+    transform: scale(1.2) rotate(15deg);
+}
+
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    padding: 1rem 0;
+    z-index: 1000;
+    animation: slideDown 0.3s ease;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.suggestion-header {
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0.5rem;
+}
+
+.suggestion-item {
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--dark-color);
+}
+
+.suggestion-item:hover {
+    background: rgba(199, 161, 122, 0.1);
+    color: var(--primary-color);
+    padding-left: 2rem;
+}
+
+.suggestion-item i {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.suggestion-item:hover i {
+    color: var(--primary-color);
+}
+
+/* Menú móvil */
+@media (max-width: 968px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        padding: 5rem 2rem 2rem;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        gap: 0;
+        justify-content: flex-start;
+        overflow-y: auto;
+    }
+
+    .menu.menu-open {
+        left: 0;
+    }
+
+    .menu li {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .menu-link {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        font-size: 1.1rem;
+    }
+
+    .menu-link:hover {
+        background: rgba(199, 161, 122, 0.1);
+        transform: translateX(5px);
+    }
+
+    .search-form {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .search-input {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .btn-search {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 0;
+    }
+
+    .search-form {
+        max-width: 150px;
+    }
+
+    .search-input {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .search-suggestions {
+        left: -50px;
+        right: -50px;
+    }
+}
+
+/* Animación de entrada para items del menú */
+@keyframes menuItemFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.menu.menu-open .menu-link {
+    animation: menuItemFadeIn 0.3s ease forwards;
+}
+

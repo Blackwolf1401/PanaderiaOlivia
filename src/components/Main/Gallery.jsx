@@ -1,3 +1,5 @@
+import '../UI/ImageAnimations.css';
+
 export default function Gallery() {
     const galleryImages = [
     {

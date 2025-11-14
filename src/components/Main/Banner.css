@@ -1,0 +1,435 @@
+/* ============================================
+   BANNER INTERACTIVO
+   ============================================ */
+
+.banner {
+    background-image: linear-gradient(100deg, #000000, #00000020), url(img/fotogeneral.png);
+    height: 40rem;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    animation: parallaxMove 20s ease-in-out infinite;
+    cursor: pointer;
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(199, 161, 122, 0.1) 0%,
+        transparent 50%,
+        rgba(199, 161, 122, 0.1) 100%
+    );
+    animation: shimmerBanner 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.banner::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(199, 161, 122, 0.15) 0%,
+        transparent 70%
+    );
+    animation: rotateGlow 15s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes parallaxMove {
+    0%, 100% {
+        background-position: center center;
+        background-size: 100% 100%;
+    }
+    25% {
+        background-position: center 55%;
+        background-size: 105% 105%;
+    }
+    50% {
+        background-position: center 60%;
+        background-size: 110% 110%;
+    }
+    75% {
+        background-position: center 55%;
+        background-size: 105% 105%;
+    }
+}
+
+@keyframes shimmerBanner {
+    0%, 100% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content-banner {
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 10rem 2rem;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-banner p {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    display: inline-block;
+    position: relative;
+    animation: slideInLeft 0.8s ease-out 0.2s both, pulseText 3s ease-in-out 1s infinite;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulseText {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(199, 161, 122, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        text-shadow: 0 0 20px rgba(199, 161, 122, 0.8);
+    }
+}
+
+.content-banner p::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    animation: underlineExpand 1s ease-out 1s forwards;
+}
+
+@keyframes underlineExpand {
+    to {
+        width: 100%;
+    }
+}
+
+.content-banner h2 {
+    color: #fff;
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    animation: slideInRight 1s ease-out 0.4s both;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.content-banner h2::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary-color);
+    animation: lineGrow 1s ease-out 0.6s both;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+@keyframes lineGrow {
+    from {
+        height: 0;
+        opacity: 0;
+    }
+    to {
+        height: 100%;
+        opacity: 1;
+    }
+}
+
+.content-banner h2 span {
+    display: inline-block;
+    animation: wordBounce 0.6s ease-out both;
+}
+
+.content-banner h2 span:nth-child(1) {
+    animation-delay: 0.8s;
+}
+
+.content-banner h2 span:nth-child(2) {
+    animation-delay: 0.9s;
+}
+
+@keyframes wordBounce {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-banner a {
+    margin-top: 2rem;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #b8916a 100%);
+    display: inline-block;
+    padding: 1.2rem 3.5rem;
+    text-transform: uppercase;
+    border-radius: 3rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: buttonFadeIn 1s ease-out 0.8s both, buttonPulse 2s ease-in-out 2s infinite;
+    box-shadow: 0 4px 15px rgba(199, 161, 122, 0.4);
+    z-index: 1;
+}
+
+@keyframes buttonFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(199, 161, 122, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(199, 161, 122, 0.7), 0 0 30px rgba(199, 161, 122, 0.3);
+    }
+}
+
+.content-banner a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: -1;
+}
+
+.content-banner a:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.content-banner a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.content-banner a:hover::after {
+    left: 100%;
+}
+
+.content-banner a:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(199, 161, 122, 0.6), 0 0 40px rgba(199, 161, 122, 0.3);
+    background: linear-gradient(135deg, #b8916a 0%, var(--primary-color) 100%);
+}
+
+.content-banner a:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.content-banner a i {
+    margin-left: 0.5rem;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.content-banner a:hover i {
+    transform: translateX(5px);
+}
+
+/* Partículas flotantes */
+.banner-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(199, 161, 122, 0.6);
+    border-radius: 50%;
+    animation: floatParticle 8s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(199, 161, 122, 0.5);
+}
+
+.particle:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 10s;
+}
+
+.particle:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.particle:nth-child(3) {
+    left: 50%;
+    animation-delay: 4s;
+    animation-duration: 9s;
+}
+
+.particle:nth-child(4) {
+    left: 70%;
+    animation-delay: 1s;
+    animation-duration: 11s;
+}
+
+.particle:nth-child(5) {
+    left: 90%;
+    animation-delay: 3s;
+    animation-duration: 13s;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(50px) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Efecto de cursor personalizado en el banner */
+.banner:hover {
+    animation-duration: 15s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content-banner h2 {
+        font-size: 2.5rem;
+    }
+
+    .content-banner a {
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
+    }
+
+    .banner {
+        height: 35rem;
+    }
+
+    .content-banner {
+        padding: 8rem 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-banner h2 {
+        font-size: 2rem;
+    }
+
+    .content-banner p {
+        font-size: 1rem;
+    }
+}
+

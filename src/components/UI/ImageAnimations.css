@@ -1,0 +1,378 @@
+/* ============================================
+   ANIMACIONES DE MOVIMIENTO PARA IMÁGENES
+   ============================================ */
+
+/* Animación continua sutil para imágenes de productos */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-5px) rotate(0.5deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-5px) rotate(-0.5deg);
+    }
+}
+
+@keyframes floatReverse {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(5px) rotate(-0.5deg);
+    }
+    50% {
+        transform: translateY(10px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(5px) rotate(0.5deg);
+    }
+}
+
+@keyframes gentleSway {
+    0%, 100% {
+        transform: translateX(0px) translateY(0px);
+    }
+    25% {
+        transform: translateX(3px) translateY(-3px);
+    }
+    50% {
+        transform: translateX(0px) translateY(-5px);
+    }
+    75% {
+        transform: translateX(-3px) translateY(-3px);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(199, 161, 122, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 20px 5px rgba(199, 161, 122, 0.2);
+    }
+}
+
+/* Aplicar animaciones a imágenes de productos */
+.interactive-card .product-image {
+    animation: float 6s ease-in-out infinite;
+    will-change: transform;
+}
+
+.interactive-card:nth-child(even) .product-image {
+    animation: floatReverse 7s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.interactive-card:nth-child(3n) .product-image {
+    animation: gentleSway 8s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.interactive-card:hover .product-image {
+    animation: none;
+    transform: scale(1.15) rotate(2deg) !important;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación para imágenes de categorías (background-image) */
+@keyframes backgroundFloat {
+    0%, 100% {
+        background-position: center center;
+        background-size: 100% 100%;
+    }
+    25% {
+        background-position: center 45%;
+        background-size: 105% 105%;
+    }
+    50% {
+        background-position: center 50%;
+        background-size: 110% 110%;
+    }
+    75% {
+        background-position: center 55%;
+        background-size: 105% 105%;
+    }
+}
+
+.interactive-category,
+.card-category {
+    animation: backgroundFloat 8s ease-in-out infinite;
+    will-change: background-position, background-size;
+    position: relative;
+    overflow: hidden;
+}
+
+.interactive-category:nth-child(even),
+.card-category:nth-child(even) {
+    animation: backgroundFloat 9s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.interactive-category:nth-child(3n),
+.card-category:nth-child(3n) {
+    animation: backgroundFloat 7s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.interactive-category:hover,
+.card-category:hover {
+    animation: none;
+    background-size: 115% 115% !important;
+    background-position: center 50% !important;
+    transition: background-size 0.5s ease, background-position 0.5s ease;
+}
+
+/* Para imágenes img dentro de categorías (si las hay) */
+.interactive-category img,
+.card-category img {
+    animation: float 5s ease-in-out infinite;
+    will-change: transform;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.interactive-category:nth-child(even) img,
+.card-category:nth-child(even) img {
+    animation: floatReverse 6s ease-in-out infinite;
+}
+
+.interactive-category:hover img,
+.card-category:hover img {
+    animation: none;
+    transform: scale(1.1) rotate(-2deg) !important;
+    transition: transform 0.4s ease;
+}
+
+/* Animación para imágenes de blog */
+.interactive-blog-card .blog-image {
+    animation: gentleSway 7s ease-in-out infinite;
+    will-change: transform;
+}
+
+.interactive-blog-card:nth-child(even) .blog-image {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 0.3s;
+}
+
+.interactive-blog-card:hover .blog-image {
+    animation: none;
+    transform: scale(1.1) rotate(1deg) !important;
+    transition: transform 0.5s ease;
+}
+
+/* Animación para galería */
+.gallery img {
+    animation: float 8s ease-in-out infinite;
+    will-change: transform;
+    transition: transform 0.3s ease;
+}
+
+.gallery-img-1 {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.gallery-img-2 {
+    animation: floatReverse 7s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.gallery-img-3 {
+    animation: gentleSway 8s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.gallery-img-4 {
+    animation: float 6.5s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+.gallery-img-5 {
+    animation: floatReverse 7.5s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+.gallery img:hover {
+    animation: none;
+    transform: scale(1.05) rotate(1deg) !important;
+    z-index: 10;
+    position: relative;
+}
+
+/* Animación para banner con efecto parallax */
+.banner {
+    position: relative;
+    overflow: hidden;
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    animation: parallaxMove 20s ease-in-out infinite;
+    will-change: transform;
+    z-index: -1;
+}
+
+@keyframes parallaxMove {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        transform: scale(1.1) translateY(-10px);
+    }
+}
+
+/* Animación para imágenes en "Sobre Nosotros" */
+.about-image img {
+    animation: float 10s ease-in-out infinite;
+    will-change: transform;
+}
+
+.about-image:hover img {
+    animation: none;
+    transform: scale(1.05) !important;
+    transition: transform 0.5s ease;
+}
+
+/* Animación para imágenes en la tienda */
+.shop-product-wrapper .product-image {
+    animation: float 7s ease-in-out infinite;
+    will-change: transform;
+}
+
+.shop-product-wrapper:nth-child(even) .product-image {
+    animation: floatReverse 8s ease-in-out infinite;
+    animation-delay: 0.3s;
+}
+
+.shop-product-wrapper:nth-child(3n) .product-image {
+    animation: gentleSway 9s ease-in-out infinite;
+    animation-delay: 0.6s;
+}
+
+/* Animación para imágenes de especiales */
+.special-product-wrapper .product-image {
+    animation: pulseGlow 3s ease-in-out infinite, float 6s ease-in-out infinite;
+    will-change: transform, box-shadow;
+}
+
+.special-product-wrapper:hover .product-image {
+    animation: pulseGlow 1s ease-in-out infinite, none;
+    transform: scale(1.12) rotate(1deg) !important;
+}
+
+/* Efecto de brillo que se mueve */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.interactive-card .product-image::after,
+.interactive-blog-card .blog-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+}
+
+.interactive-card:hover .product-image::after,
+.interactive-blog-card:hover .blog-image::after {
+    animation: shimmer 1.5s infinite;
+}
+
+/* Animación de entrada para imágenes */
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.interactive-card .product-image,
+.interactive-blog-card .blog-image,
+.gallery img,
+.card-category img {
+    animation-fill-mode: both;
+}
+
+/* Pausar animaciones cuando no están visibles (mejora rendimiento) */
+@media (prefers-reduced-motion: reduce) {
+    .interactive-card .product-image,
+    .interactive-blog-card .blog-image,
+    .gallery img,
+    .card-category img,
+    .about-image img {
+        animation: none;
+    }
+}
+
+/* Animación más suave para móviles */
+@media (max-width: 768px) {
+    .interactive-card .product-image,
+    .interactive-blog-card .blog-image,
+    .gallery img {
+        animation-duration: 8s;
+    }
+}
+
+/* Efecto de ondas en imágenes al hover */
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.interactive-card:hover .product-image::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(199, 161, 122, 0.3);
+    transform: translate(-50%, -50%);
+    animation: ripple 1s ease-out;
+    pointer-events: none;
+}
+

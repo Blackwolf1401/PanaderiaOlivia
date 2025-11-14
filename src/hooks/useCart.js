@@ -34,7 +34,12 @@ export function useCart() {
     };
 
     const getCartTotal = () => {
-    return cart.reduce((total, item) => total + (item.currentPrice * item.quantity), 0);
+    return cart.reduce((total, item) => {
+        const price = typeof item.currentPrice === 'string' 
+            ? parseFloat(item.currentPrice.replace(/\./g, '')) 
+            : item.currentPrice;
+        return total + (price * item.quantity);
+    }, 0);
     };
 
     const getCartItemsCount = () => {
